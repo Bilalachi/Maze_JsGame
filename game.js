@@ -15,8 +15,6 @@ window.onload = function () {
     var game = document.getElementById("game");
     game.onmouseleave = outOfBound;
 
-
-
     var score = 0;
     var scores =  document.getElementsByClassName("boundary example")[0];
     scores.innerHTML = `${score}`;
@@ -39,9 +37,10 @@ window.onload = function () {
         if (document.getElementById("status").innerText != "You Lost!" && document.getElementById("status").innerText != "You Won!" && document.getElementById("status").innerText != "You're Out of Bound! Go Back to start") {
             for (var i = 0; i < boundaries.length; i++) {
                 boundaries[i].classList.add("youlose");
-                console.log("You Lose!")
+                
             }
             document.getElementById("status").innerText = "You Lost!";
+            
             score = score - 10;
             scores.innerHTML = `${score}`
         }
