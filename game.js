@@ -47,7 +47,7 @@ window.onload = function () {
 
     }
 
-    /*Changin the bounderies colors and status signaling the player's loss and deductating score */
+    /*Changin the bounderies colors and status signaling the player's loss and deductating 10 from his score */
     function lose() {
         if (document.getElementById("status").innerText != "You Lost!" && document.getElementById("status").innerText != "You Won!" && document.getElementById("status").innerText != "You're Out of Bound! Go Back to start") {
             for (var i = 0; i < boundaries.length; i++) {
@@ -61,7 +61,7 @@ window.onload = function () {
         }
     }
 
-    /*Changin the bounderies colors in case of previous loss and status signaling the player's loss and deductating score */
+    /*Changin status signaling the player's win and adding 5 to his score */
     function win() {
         if (document.getElementById("status").innerText != "You Lost!" && document.getElementById("status").innerText != "You Won!" && document.getElementById("status").innerText != "You're Out of Bound! Go Back to start") {
             document.getElementById("status").innerText = "You Won!";
@@ -71,13 +71,11 @@ window.onload = function () {
 
     }
 
+    /*Notifying the player that he is out of bound and must go back to the start in order to play */
     function outOfBound() {
         document.getElementById("status").innerText = "You're Out of Bound! Go Back to start";
 
     }
 
-    setTimeout(function () {
-        document.getElementById("status").innerText = "Dont Hit The Boundaries";
-    }, 20);
 
 }
