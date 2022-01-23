@@ -12,6 +12,10 @@ window.onload = function () {
         boundaries[i].onmouseover = lose;
     }
 
+    var game = document.getElementById("game");
+    game.onmouseleave = outOfBound;
+
+
 
     var score = 0;
     var scores =  document.getElementsByClassName("boundary example")[0];
@@ -20,6 +24,9 @@ window.onload = function () {
     function startGame() {
 
         document.getElementById("status").innerText = "Dont Hit The Boundaries";
+        for (var i = 0; i < boundaries.length; i++){
+            boundaries[i].classList.remove("youlose")
+        }
     }
 
     function newGame() {
@@ -29,7 +36,7 @@ window.onload = function () {
     }
 
     function lose() {
-        if (document.getElementById("status").innerText != "You Lost!" && document.getElementById("status").innerText != "You Won!" ) {
+        if (document.getElementById("status").innerText != "You Lost!" && document.getElementById("status").innerText != "You Won!" && document.getElementById("status").innerText != "You're Out of Bound! Go Back to start") {
             for (var i = 0; i < boundaries.length; i++) {
                 boundaries[i].classList.add("youlose");
                 console.log("You Lose!")
@@ -41,11 +48,19 @@ window.onload = function () {
     }
 
     function win() {
-        if (document.getElementById("status").innerText != "You Lost!" && document.getElementById("status").innerText != "You Won!" ) {
+        if (document.getElementById("status").innerText != "You Lost!" && document.getElementById("status").innerText != "You Won!" && document.getElementById("status").innerText != "You're Out of Bound! Go Back to start") {
             document.getElementById("status").innerText = "You Won!";
+            for (var i = 0; i < boundaries.length; i++){
+                boundaries[i].classList.remove("youlose")
+            }
             score = score + 5;
             scores.innerHTML = `${score}`;
         }
+
+    }
+
+    function outOfBound(){
+        document.getElementById("status").innerText = "You're Out of Bound! Go Back to start";
 
     }
 
