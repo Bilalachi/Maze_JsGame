@@ -9,16 +9,13 @@ window.onload = function () {
 
     var boundaries = document.getElementsByClassName("boundary");
     for (var i = 0; i < boundaries.length; i++){
-        boundaries.onmouseover = lose;
+        boundaries[i].onmouseover = lose;
     }
 
 
     var score = 0;
     var scores =  document.getElementsByClassName("boundary example")[0];
     scores.innerHTML = `${score}`;
-
-    document.getElementByClassName("example").innerText = score;
-
 
     function startGame() {
 
@@ -31,19 +28,25 @@ window.onload = function () {
         scores.innerHTML = score;
     }
 
+    function lose() {
+        if (document.getElementById("status").innerText != "You Lost!" && document.getElementById("status").innerText != "You Won!" ) {
+            for (var i = 0; i < boundaries.length; i++) {
+                boundaries[i].classList.add("youlose");
+                console.log("You Lose!")
+            }
+            document.getElementById("status").innerText = "You Lost!";
+            score = score - 10;
+            scores.innerHTML = `${score}`
+        }
+    }
+
     function win() {
-        if (boundaries[1].style.backgroundColor != "red") {
-            document.getElementById("status").innerText = "You Won";
+        if (document.getElementById("status").innerText != "You Lost!" && document.getElementById("status").innerText != "You Won!" ) {
+            document.getElementById("status").innerText = "You Won!";
             score = score + 5;
             scores.innerHTML = `${score}`;
         }
 
     }
 
-    function lose() {
-        for (var i = 0; i < boundaries.length; i++) {
-            boundaries[i].classList.add("youlose");
-        }
-        document.getElementById("status").innerText = "You Lost!";
-    }
 }
