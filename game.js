@@ -2,6 +2,7 @@ window.onload = function () {
 
     var start = document.getElementById("start");
     start.onmouseover = startGame;
+    start.onmouseleave = startGame;
     start.onclick = newGame;
 
     var end = document.getElementById("end");
@@ -21,16 +22,22 @@ window.onload = function () {
 
     function startGame() {
 
+
+        if (document.getElementById("status").innerText != "Dont Hit The Boundaries"){
         document.getElementById("status").innerText = "Dont Hit The Boundaries";
+        }
         for (var i = 0; i < boundaries.length; i++){
             boundaries[i].classList.remove("youlose")
         }
+
+        
     }
 
     function newGame() {
         document.getElementById("status").innerText = "Begin by moving your mouse over the \"S\".";
         score = 0;
         scores.innerHTML = score;
+        
     }
 
     function lose() {
@@ -62,5 +69,9 @@ window.onload = function () {
         document.getElementById("status").innerText = "You're Out of Bound! Go Back to start";
 
     }
+
+    setTimeout(function(){ 
+        document.getElementById("status").innerText = "Dont Hit The Boundaries";
+    }, 20);
 
 }
